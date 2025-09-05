@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LegalDoc Simplify - AI-Powered Legal Guidance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Classic blue to navy gradient with silver/tan overlay */
+            background: linear-gradient(135deg, #e5e7eb 0%, #bfcad6 10%, #1a237e 60%, #0d1b2a 100%);
+            min-height: 100vh;
+        }
+        .hero-bg {
+            position: relative;
+            background: linear-gradient(120deg, #1a237e 60%, #bfcad6 100%);
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            opacity: 0.35;
+            z-index: 0;
+            filter: blur(1px) brightness(0.97);
+        }
+        .hero-bg > div {
+            position: relative;
+            z-index: 1;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.98);}
+            to { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1a237e 60%, #1976d2 100%);
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 24px rgba(26,35,126,0.25), 0 1.5px 0 #1976d2 inset;
+            border: none;
+            perspective: 600px;
+        }
+        .btn-primary:hover {
+            transform: scale(1.07) translateY(-2px) rotateX(8deg);
+            box-shadow: 0 8px 32px rgba(25,118,210,0.35);
+            background: linear-gradient(135deg, #1976d2 0%, #1a237e 100%);
+            color: #fff;
+        }
+        /* 3D Card styles with beige/tan and silver */
+        .glass-card {
+            background: linear-gradient(120deg, #f5f5dc 80%, #bfcad6 100%);
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            border: 1px solid #bfcad6;
+            transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+            perspective: 800px;
+        }
+        .glass-card:hover {
+            transform: scale(1.03) translateY(-6px) rotateY(4deg);
+            box-shadow: 0 16px 48px 0 rgba(25,118,210,0.22);
+            border-color: #1976d2;
+        }
+        /* Eye-catchy heading styles */
+        h1 {
+            color: #0d1b2a !important;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px #1976d288, 0 4px 24px #bfcad6;
+        }
+        h2 {
+            color: #1a237e;
+            font-weight: 800;
+            text-shadow: 1px 1px 6px #1976d288;
+        }
+        h3 {
+            color: #1976d2;
+            font-weight: 800;
+            text-shadow: 1px 1px 6px #bfcad688;
+        }
+        p, label, li, input, textarea {
+            font-size: 1.15rem;
+            color: #22223b;
+        }
+        /* Section backgrounds */
+        section {
+            background: linear-gradient(120deg, #f5f5dc 80%, #bfcad6 100%);
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px #bfcad688;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .glass-card { padding: 1.5rem; }
+            section { border-radius: 1rem; }
+        }
+        /* Footer style */
+        footer {
+            background: linear-gradient(90deg, #1a237e 0%, #1976d2 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 -2px 16px #1a237e88;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header -->
+    <header class="hero-bg text-white py-16 px-4 relative">
+        <!-- Account/Profile Section (top right corner, now clickable with dropdown) -->
+        <div id="account-section" style="position: absolute; top: 2rem; right: 2rem; z-index: 2; cursor: pointer;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="color: #1a237e; font-weight: 600; font-size: 1.1rem; background: #f5f5dc; padding: 0.5rem 1rem; border-radius: 1rem; box-shadow: 0 2px 8px #bfcad688;">
+                    Account
+                </span>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid #1976d2; box-shadow: 0 2px 8px #bfcad688;">
+            </div>
+            <!-- Dropdown menu (hidden by default) -->
+            <div id="account-dropdown" style="display: none; position: absolute; top: 60px; right: 0; background: #f5f5dc; border-radius: 1rem; box-shadow: 0 4px 16px #bfcad688; min-width: 180px; overflow: hidden; border: 1px solid #bfcad6;">
+                <a href="#" style="display: block; padding: 1rem; color: #1a237e; text-decoration: none; border-bottom: 1px solid #bfcad6;">History</a>
+                <a href="#" style="display: block; padding: 1rem; color: #1a237e; text-decoration: none; border-bottom: 1px solid #bfcad6;">Sign In</a>
+                <a href="#" style="display: block; padding: 1rem; color: #1a237e; text-decoration: none;">Help</a>
+            </div>
+        </div>
+        <div class="container mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4" style="color: black;">
+            LegalDoc Simplify <br>
+            By Interface Crafters</h1>
+            <p class="text-xl md:text-2xl mb-8" style="color: black;">Empower Your Decisions with AI-Simplified Legal Guidance</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- Document Upload Section -->
+        <section id="upload" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center" style="color: #262520; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; text-shadow: 2px 2px 8px #1a237e88, 0 4px 24px #bfcad6;">Upload Your Legal Document</h2>
+            <div class="glass-card p-8 rounded-lg shadow-md max-w-2xl mx-auto">
+                <label class="block text-lg mb-4" style="color: #262520; font-family: 'Inter', 'Segoe UI', Arial, sans-serif; text-shadow: 2px 2px 8px #1a237e88, 0 4px 24px #bfcad6;">
+                    Paste your legal text or upload a file:
+                </label>
+                <textarea id="legal-text" class="w-full p-4 border rounded-md mb-4 h-40" placeholder="Enter or paste legal text here..."></textarea>
+                <input type="file" id="file-upload" accept=".pdf,.docx,.txt" class="block w-full mb-4" />
+                <button id="simplify-btn" class="btn-primary px-6 py-3 rounded-md w-full text-lg">Simplify Document</button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="mb-16 hidden">
+            <h2 class="text-3xl font-bold mb-8 text-center">Simplified Guidance</h2>
+            <div class="glass-card p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Plain Language Summary</h3>
+                        <p id="summary" class="text-gray-700"></p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Key Points & Risks</h3>
+                        <ul id="key-points" class="text-gray-700 list-disc pl-5"></ul>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4">Actionable Advice</h3>
+                    <p id="advice" class="text-gray-700"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section -->
+        <section id="qa" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center">Ask Questions About Your Document</h2>
+            <div class="glass-card p-8 rounded-lg shadow-md max-w-2xl mx-auto">
+                <input type="text" id="question-input" class="w-full p-4 border rounded-md mb-4" placeholder="Ask a specific question..." />
+                <button id="ask-btn" class="btn-primary px-6 py-3 rounded-md w-full text-lg">Get Answer</button>
+                <p id="answer" class="mt-4 text-gray-700"></p>
+            </div>
+        </section>
+
+        <!-- Feedback Box Section -->
+        <section id="feedback" class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-center">We Value Your Feedback</h2>
+            <div class="glass-card p-8 rounded-lg shadow-md max-w-2xl mx-auto">
+                <label for="feedback-text" class="block text-lg mb-4">Share your experience or suggestions:</label>
+                <textarea id="feedback-text" class="w-full p-4 border rounded-md mb-4 h-32" placeholder="Type your feedback here..."></textarea>
+                <button id="submit-feedback" class="btn-primary px-6 py-3 rounded-md w-full text-lg">Submit Feedback</button>
+                <p id="feedback-message" class="mt-4 text-green-700 font-semibold"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-4">
+        <div class="container mx-auto text-center">
+            <p>© 2025 LegalDoc Simplify. All rights reserved. <br> Interface Crafters</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulate AI Simplification (In real app, replace with API calls to OpenAI or similar)
+        const mockSimplifications = {
+            summary: "This document is a standard rental agreement that outlines the terms for renting an apartment, including rent payments, lease duration, and responsibilities of the tenant and landlord.",
+            keyPoints: [
+                "Monthly rent is $1,200 due on the 1st of each month.",
+                "Lease term is 12 months starting from January 1, 2024.",
+                "Potential risks include eviction if rent is late and liability for damages beyond normal wear and tear."
+            ],
+            advice: "Review the late fee policy carefully and ensure you understand pet policies before signing."
+        };
+
+        const mockAnswers = {
+            "what is the rent amount?": "The monthly rent is $1,200.",
+            "when does the lease start?": "The lease starts on January 1, 2024.",
+            // Add more as needed
+        };
+
+        document.getElementById('simplify-btn').addEventListener('click', () => {
+            const text = document.getElementById('legal-text').value;
+            if (!text && !document.getElementById('file-upload').files[0]) {
+                alert('Please enter text or upload a file.');
+                return;
+            }
+            // Simulate processing
+            setTimeout(() => {
+                document.getElementById('summary').textContent = mockSimplifications.summary;
+                const ul = document.getElementById('key-points');
+                ul.innerHTML = '';
+                mockSimplifications.keyPoints.forEach(point => {
+                    const li = document.createElement('li');
+                    li.textContent = point;
+                    ul.appendChild(li);
+                });
+                document.getElementById('advice').textContent = mockSimplifications.advice;
+                document.getElementById('results').classList.remove('hidden');
+            }, 2000);
+        });
+
+        document.getElementById('ask-btn').addEventListener('click', () => {
+            const question = document.getElementById('question-input').value.toLowerCase();
+            const answer = mockAnswers[question] || "I'm sorry, I don't have specific information for that question based on the document.";
+            document.getElementById('answer').textContent = answer;
+        });
+
+        // Feedback submission simulation
+        document.getElementById('submit-feedback').addEventListener('click', () => {
+            const feedback = document.getElementById('feedback-text').value.trim();
+            const message = document.getElementById('feedback-message');
+            if (feedback.length === 0) {
+                message.textContent = "Please enter your feedback before submitting.";
+                message.style.color = "#b91c1c";
+                return;
+            }
+            message.textContent = "Thank you for your feedback!";
+            message.style.color = "#15803d";
+            document.getElementById('feedback-text').value = "";
+        });
+
+        // Account dropdown functionality
+        const accountSection = document.getElementById('account-section');
+        const accountDropdown = document.getElementById('account-dropdown');
+        let dropdownOpen = false;
+
+        accountSection.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdownOpen = !dropdownOpen;
+            accountDropdown.style.display = dropdownOpen ? 'block' : 'none';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function () {
+            if (dropdownOpen) {
+                accountDropdown.style.display = 'none';
+                dropdownOpen = false;
+            }
+        });
+    </script>
+
+</body>
+</html>

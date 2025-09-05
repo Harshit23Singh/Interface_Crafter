@@ -1,0 +1,56 @@
+# LegalDoc Simplify By Interface Crafters
+
+# Challenge :- Develop an AI solution that simplifies complex legal documents into clear, accessible guidance, empowering users to make informed decisions.
+
+LegalDoc Simplify is a responsive, interactive web application designed to help users upload legal documents, receive AI-powered simplified guidance, ask questions, and provide feedback. The site uses a professional color palette (classic blue, navy, gray, silver, tan, and beige) for a modern, business-like look.
+
+## Features
+
+- **Upload Legal Documents:** Paste text or upload files (PDF, DOCX, TXT).
+- **AI-Simplified Guidance:** Get plain language summaries, key points, risks, and actionable advice (mocked for demo).
+- **Q&A Section:** Ask specific questions about your document and receive instant answers (mocked for demo).
+- **Feedback Box:** Share your experience or suggestions.
+- **Modern UI:** 3D glassmorphism cards, gradients, and responsive design.
+- **Professional Color Scheme:** No gold/yellow; uses blue, navy, gray, silver, tan, and beige.
+
+## How to Use
+
+1. **Clone or Download** this repository.
+2. Open `code.html` in your browser.
+3. Upload or paste your legal document.
+4. Click **Simplify Document** to view AI-generated guidance.
+5. Use the Q&A section to ask questions.
+6. Submit feedback in the feedback box.
+
+## Customization
+
+- **Colors:** Adjust in the `<style>` section of `code.html`.
+- **Images:** Change header or section background images by updating the URLs in CSS.
+- **AI Integration:** Replace mock JavaScript logic with actual API calls for real AI-powered responses.
+
+## Technologies Used
+
+- HTML5
+- CSS3 (with Tailwind CDN for utility classes)
+- JavaScript (for interactivity)
+
+## License
+
+This project is for educational/demo purposes. Please replace images with your own or copyright-free alternatives if deploying publicly.
+
+---
+
+**Created by team Interface Crafter.
+Team Leader:-
+Harshit Singh(UI/UX designer)
+harshitthakur2325@gmail.com
+
+Simran Tiwari(Backend Connector)
+simransimran1884@gmail.com
+
+sourabh Singh,Anjali Bhandari{ppt designer}
+sourabhy663@gmail.com
+bhandarianjali313@gmail.com
+
+Ashutosh Prakash Singh(Bug hunting)
+prakashsinghashutosh57@gmail.com

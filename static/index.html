@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Legal Simplifier</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Legal Document Simplifier</h1>
+        <p>Paste text or upload a PDF to get plain-language guidance.</p>
+      </header>
+
+      <section class="inputs">
+        <textarea id="text" placeholder="Paste legal text here..."></textarea>
+        <div class="controls">
+          <input type="file" id="file" accept="application/pdf" />
+          <input type="text" id="prompt" placeholder="Add context or questions (optional)" />
+          <button id="analyze">Analyze</button>
+        </div>
+        <div id="status" class="status"></div>
+      </section>
+
+      <section id="results" class="results hidden">
+        <h2>Guidance</h2>
+        <div class="card">
+          <h3>Summary</h3>
+          <p id="summary"></p>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Key Points</h3>
+            <ul id="key_points"></ul>
+          </div>
+          <div class="card">
+            <h3>Obligations</h3>
+            <ul id="obligations"></ul>
+          </div>
+          <div class="card">
+            <h3>Risks</h3>
+            <ul id="risks"></ul>
+          </div>
+          <div class="card">
+            <h3>Suggested Actions</h3>
+            <ul id="actions"></ul>
+          </div>
+          <div class="card">
+            <h3>Disclaimers</h3>
+            <ul id="disclaimers"></ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <small>This tool provides informational summaries only and is not legal advice.</small>
+      </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+  </html>
+

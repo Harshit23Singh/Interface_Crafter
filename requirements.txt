@@ -1,0 +1,7 @@
+flask>=3.0.0
+flask-cors>=4.0.0
+openai>=1.35.7
+pypdf>=4.2.0
+python-dotenv>=1.0.1
+orjson>=3.10.7
+
